@@ -12,7 +12,7 @@ const Statistics = ({ good, neutral, bad, clicks, score }) => {
         return (
             <div>
                 <Heading text="statistics" />
-                <div>No feedback given</div>
+                <div>No feedback given.</div>
             </div>
         )
     }
