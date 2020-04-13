@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Button = ({ onClick, text }) => {
-    return <button onClick={onClick}>{text}</button>
-}
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
-const Heading = ({ text }) => {
-    return <h1>{text}</h1>
-}
+const Heading = ({ text }) => <h1>{text}</h1>
+
 
 const Display = ({ text, value }) => <div>{text} {value}</div>
 
