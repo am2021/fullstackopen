@@ -8,6 +8,14 @@ const Heading = ({ text }) => <h1>{text}</h1>
 const Statistic = ({ text, value }) => <div>{text} {value}</div>
 
 const Statistics = ({ good, neutral, bad, clicks, score }) => {
+    if (clicks === 0) {
+        return (
+            <div>
+                <Heading text="statistics" />
+                <div>No feedback given</div>
+            </div>
+        )
+    }
 
     return (
         <div>
