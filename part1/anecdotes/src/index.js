@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 const Heading = ({ text }) => <h1>{text}</h1>
 const Display = ({ value }) => <div>{value}</div>
-const Max = () => {}
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
