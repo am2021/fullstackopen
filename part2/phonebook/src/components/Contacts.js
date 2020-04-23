@@ -1,7 +1,7 @@
 import React from 'react'
 import Contact from './Contact'
 
-const Contacts = ({ filteredPersons } ) => {
+const Contacts = ({ filteredPersons }) => {
     return(
         <ul>
         {filteredPersons.map((person) => 
