@@ -1,19 +1,20 @@
-import React from 'react'
-import Country from './Country'
+import React, { useState } from 'react'
 
-const Countries = ({ filteredCountries }) => {
-    if(filteredCountries.length > 10) {
-        return <div>Too many matches, specify another filter</div>
-    } else if (filteredCountries.length === 1) {
-        const country = filteredCountries[0]
+const Country = ({ country }) => {
+    const [ show, setShow ] = useState(false)
+    
 
+    if(show === true) {
         return (
             <div>
-                <h1>{country.name}</h1>
+                <div>
+                    <h1 onClick={() => setShow(false)}>{country.name}</h1>
+                </div>
+                
                 <p>
                     capital {country.capital}<br />
                     population {country.population}
-             </p>
+                </p>
                 <h2>languages</h2>
                 <ul>
                     {country.languages.map((language) =>
@@ -25,9 +26,11 @@ const Countries = ({ filteredCountries }) => {
         )
     } else {
         return (
-            filteredCountries.map((country) => <Country country={country}/>)
+            <div onClick={() => setShow(true)}>
+                {country.name}
+            </div>
         )
     }
 }
 
-export default Countries
+export default Country
