@@ -1,5 +1,6 @@
 import React from 'react'
 import Country from './Country'
+import Weather from './Weather'
 
 const Countries = ({ filteredCountries }) => {
     if(filteredCountries.length > 10) {
@@ -21,6 +22,7 @@ const Countries = ({ filteredCountries }) => {
                     )}
                 </ul>
                 <img src={country.flag} alt={`${country.name} flag`} height="100" width="100"></img>
+                <Weather city={country.capital} />
             </div>
         )
     } else {
