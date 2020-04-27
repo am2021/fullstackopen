@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Contacts from './components/Contacts'
+import Contact from './components/Contact'
 import Filter from './components/Filter'
 import Form from './components/Form'
 import contactService from './services/contact'
 import axios from 'axios'
+import contact from './services/contact'
 
 const App = () => {
   const [ persons, setPersons ] = useState([]) 
@@ -57,6 +58,25 @@ const App = () => {
     }
   }
 
+  const removeContactOf = (id) => {
+    const person = persons.find(p => p.id === id)
+
+    if (window.confirm("Are you sure you want to delete the contact?")) {
+      contactService
+      .remove(id)
+      .then(returnedPerson => {
+        contactService
+          .getAll()
+          .then(returnedPersons => {
+             setPersons(returnedPersons)
+            }
+          )
+
+        setPersons(persons.map(person => person.id !== id ? person : returnedPerson))
+      })
+    }
+  }
+
   const filteredPersons = (filter === '')
     ? persons
     : persons.filter(person => new RegExp(filter, 'i').test(person.name))
@@ -69,7 +89,16 @@ const App = () => {
       <h2>add a new</h2>
       <Form addContact={addContact} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
-      <Contacts filteredPersons={filteredPersons} />
+      <ul>
+        {filteredPersons.map((person) => 
+          <Contact 
+            key={person.name} 
+            name={person.name} 
+            number={person.number}
+            removeContact={() => removeContactOf(person.id)}
+          />
+        )}
+      </ul>
     </div>
   )
 }
