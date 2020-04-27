@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Contacts from './components/Contacts'
 import Filter from './components/Filter'
 import Form from './components/Form'
+import contactService from './services/contact'
 import axios from 'axios'
 
 const App = () => {
@@ -46,9 +47,13 @@ const App = () => {
         number: newNumber
       }
 
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
+      contactService
+      .create(personObject)
+      .then(returnedPerson => {
+        setPersons(persons.concat(personObject))
+        setNewName('')
+        setNewNumber('')
+      })
     }
   }
 
